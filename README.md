@@ -1,8 +1,19 @@
 # Infra Processor 
-This is a microservice which will read data from a kafka topic and write it to a file.
+This is a microservice which will read cpu metrics from a kafka topic and write it to a file.
 
 ## How to run
-Run the service by passing the topic name and the bootstrap server address.
+In order to run the executable, export the following environment variables:
+| Variable Name | Description | Defaults (If any) |
+| ------ | ------ | ------|
+| TOPIC | Name of the topic which is created on kafka |  |
+| BROKER_ADDRESS | Address of broker service in format host:port | |
+| GROUP_ID | Group ID for a group of consumers. Can be any string value | |
+| OUT_FILE_PATH | Location including filename which on which the cpu metrics will be written | |
+| RUN_TIMEOUT | If you want to run for a limited time, you can do so by passing a value in integer. For indefinite running, pass -1 | -1 |
+
+## Docker image
+Docker image has been published on docker hub. Pull it using below command:
 ```
-infraprocessor --topic CPU_Topic --bootstrap-server localhost:9092
+docker pull tejaswikasat/infraprocessor:latest
 ```
+While running it, set the above variables as environment variables
